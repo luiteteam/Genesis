@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Typography, Button, Grid, Card, CardContent, Container, Avatar, Stack, Paper, TextField, InputAdornment } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import EmailIcon from '@mui/icons-material/Email';
+import PhoneIcon from '@mui/icons-material/Phone';
 import PrintIcon from '@mui/icons-material/Print';
 import LayersIcon from '@mui/icons-material/Layers';
 import BookIcon from '@mui/icons-material/Book';
@@ -267,6 +268,33 @@ export default function Home() {
             </Grid>
 
           </Grid>
+
+          {/* CTA Button */}
+          <Box sx={{ mt: 6, textAlign: 'center' }}>
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              endIcon={<ArrowForwardIcon />}
+              onClick={() => navigate('/services')}
+              sx={{
+                fontSize: { xs: '0.875rem', md: '1rem' },
+                px: { xs: 3, md: 4 },
+                py: { xs: 1.5, md: 2 },
+                borderRadius: 2,
+                fontWeight: 600,
+                textTransform: 'none',
+                boxShadow: 3,
+                '&:hover': {
+                  boxShadow: 6,
+                  transform: 'translateY(-2px)',
+                },
+                transition: 'all 0.3s ease',
+              }}
+            >
+              Explore All Services
+            </Button>
+          </Box>
         </Container>
       </Box>
 
@@ -376,7 +404,7 @@ export default function Home() {
       {/* Years of Happy Customers Section */}
       <Box sx={{ bgcolor: 'grey.100', py: { xs: 6, md: 8 }, textAlign: 'center' }}>
         <Container>
-          <Typography variant="h3" fontWeight={800} color="primary" gutterBottom>
+          <Typography variant="h4" fontWeight={800} color="primary" gutterBottom>
             {yearsOfService} Years of Happy Customers
           </Typography>
           <Typography variant="h6" color="text.secondary">
@@ -518,6 +546,92 @@ export default function Home() {
               </Grid>
             ))}
           </Grid>
+        </Container>
+      </Box>
+
+      {/* Final CTA Contact Section */}
+      <Box sx={{ bgcolor: 'secondary.main', color: 'black', py: { xs: 8, md: 12 } }}>
+        <Container maxWidth="md">
+          <Box sx={{ textAlign: 'center' }}>
+            <Typography variant="h3" fontWeight={800} gutterBottom>
+              Ready to Start Your Printing Project?
+            </Typography>
+            <Typography variant="h6" sx={{ mb: 4, opacity: 0.9, maxWidth: 600, mx: 'auto' }}>
+              Let's bring your ideas to life with premium quality printing. Get in touch with us today for a free consultation and quote.
+            </Typography>
+            
+            <Stack 
+              direction={{ xs: 'column', sm: 'row' }} 
+              spacing={3} 
+              justifyContent="center" 
+              alignItems="center"
+              sx={{ mt: 4 }}
+            >
+              <Button
+                variant="contained"
+                color="secondary"
+                size="large"
+                endIcon={<ArrowForwardIcon />}
+                onClick={() => navigate('/contact')}
+                sx={{
+                  fontSize: { xs: '0.875rem', md: '1rem' },
+                  px: { xs: 4, md: 5 },
+                  py: { xs: 1.5, md: 2 },
+                  borderRadius: 2,
+                  fontWeight: 600,
+                  textTransform: 'none',
+                  boxShadow: 3,
+                  '&:hover': {
+                    boxShadow: 6,
+                    transform: 'translateY(-2px)',
+                  },
+                  transition: 'all 0.3s ease',
+                }}
+              >
+                Contact Us
+              </Button>
+              
+              <Button
+                variant="outlined"
+                color="inherit"
+                size="large"
+                endIcon={<ArrowForwardIcon />}
+                onClick={() => navigate('/services')}
+                sx={{
+                  fontSize: { xs: '0.875rem', md: '1rem' },
+                  px: { xs: 4, md: 5 },
+                  py: { xs: 1.5, md: 2 },
+                  borderRadius: 2,
+                  fontWeight: 600,
+                  textTransform: 'none',
+                  boxshadow: 3,
+                  '&:hover': {
+                    boxShadow: 6,
+                    transform: 'translateY(-2px)',
+                  },
+                  transition: 'all 0.3s ease',
+                }}
+              >
+                View All Services
+              </Button>
+            </Stack>
+
+            {/* Contact Info */}
+            <Box sx={{ mt: 6, display: 'flex', flexDirection: { xs: 'column', md: 'row' }, justifyContent: 'center', gap: 4 }}>
+              <Stack direction="row" spacing={1} alignItems="center" justifyContent="center">
+                <PhoneIcon sx={{ fontSize: 20 }} />
+                <Typography variant="body1" fontWeight={600}>
+                  8471916297
+                </Typography>
+              </Stack>
+              <Stack direction="row" spacing={1} alignItems="center" justifyContent="center">
+                <EmailIcon sx={{ fontSize: 20 }} />
+                <Typography variant="body1" fontWeight={600}>
+                  genesispress@gmail.com
+                </Typography>
+              </Stack>
+            </Box>
+          </Box>
         </Container>
       </Box>
     </Box>
