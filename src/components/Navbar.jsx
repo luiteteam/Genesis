@@ -20,6 +20,7 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
+import { Link, useLocation } from 'react-router-dom';
 
 const navLinks = [
   { label: 'Home', href: '/' },
@@ -49,6 +50,7 @@ export default function Navbar() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [drawerOpen, setDrawerOpen] = React.useState(false);
+  const location = useLocation();
 
   const handleDrawerToggle = () => {
     setDrawerOpen(!drawerOpen);
@@ -58,12 +60,14 @@ export default function Navbar() {
     <Box sx={{ width: 280, p: 2 }} role="presentation" onClick={handleDrawerToggle}>
       {/* Logo / Title */}
       <Box sx={{ mb: 2, textAlign: 'center' }}>
-        <Box
-          component="img"
-          src="/logo.png"
-          alt="Genesis Press"
-          sx={{ height: 60, width: 'auto', mx: 'auto' }}
-        />
+        <Link to="/" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Box
+            component="img"
+            src="/logo.png"
+            alt="Genesis Press"
+            sx={{ height: 60, width: 'auto', mx: 'auto' }}
+          />
+        </Link>
       </Box>
   
       <Divider sx={{ mb: 2 }} />
@@ -73,13 +77,15 @@ export default function Navbar() {
         {navLinks.map((item) => (
           <ListItem disablePadding key={item.label}>
             <ListItemButton
-              component="a"
-              href={item.href}
+              component={Link}
+              to={item.href}
               sx={{
                 px: 2,
                 py: 1.5,
                 borderRadius: 2,
                 transition: 'all 0.3s',
+                bgcolor: location.pathname === item.href ? 'primary.light' : 'inherit',
+                color: location.pathname === item.href ? 'primary.main' : 'inherit',
                 '&:hover': {
                   bgcolor: 'primary.light',
                   color: 'primary.main',
@@ -133,14 +139,14 @@ export default function Navbar() {
       <AppBar position="static" color="secondary" elevation={1}>
         <Toolbar>
           <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
-            <a href="/" style={{ display: 'flex', alignItems: 'center' }}>
+            <Link to="/" style={{ display: 'flex', alignItems: 'center' }}>
               <Box
                 component="img"
                 src="/logo.png"
                 alt="Company Logo"
                 sx={{ height: { xs: 46, md: 60 }, width: 'auto', mr: 2, cursor: 'pointer' }}
               />
-            </a>
+            </Link>
           </Box>
           {isMobile ? (
             <IconButton color="inherit" edge="end" onClick={handleDrawerToggle}>
@@ -151,7 +157,8 @@ export default function Navbar() {
               {navLinks.map((item) => (
                 <Button
                   key={item.label}
-                  href={item.href}
+                  component={Link}
+                  to={item.href}
                   variant="text"
                   color="inherit"
                   sx={{
@@ -159,11 +166,14 @@ export default function Navbar() {
                     fontSize: '1rem',
                     textTransform: 'none',
                     position: 'relative',
-                    color: item.label === 'Contact Us' ? '#E3010F' : 'inherit',
+                    color:
+                      location.pathname === item.href
+                        ? (item.label === 'Contact Us' ? '#E3010F' : 'primary.main')
+                        : (item.label === 'Contact Us' ? '#E3010F' : 'inherit'),
                     '&::after': {
                       content: '""',
                       position: 'absolute',
-                      width: '0%',
+                      width: location.pathname === item.href ? '100%' : '0%',
                       height: '2px',
                       left: 0,
                       bottom: 0,
