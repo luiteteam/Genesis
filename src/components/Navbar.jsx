@@ -62,7 +62,7 @@ export default function Navbar() {
           component="img"
           src="/logo.png"
           alt="Genesis Press"
-          sx={{ height: 40, width: 'auto', mx: 'auto' }}
+          sx={{ height: 60, width: 'auto', mx: 'auto' }}
         />
       </Box>
   
@@ -138,7 +138,7 @@ export default function Navbar() {
                 component="img"
                 src="/logo.png"
                 alt="Company Logo"
-                sx={{ height: { xs: 36, md: 48 }, width: 'auto', mr: 2, cursor: 'pointer' }}
+                sx={{ height: { xs: 46, md: 60 }, width: 'auto', mr: 2, cursor: 'pointer' }}
               />
             </a>
           </Box>
