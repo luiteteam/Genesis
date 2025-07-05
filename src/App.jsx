@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
@@ -9,10 +9,18 @@ import Products from './pages/Products';
 import Pages from './pages/Pages';
 import { Box, Typography } from '@mui/material';
 import Footer from './components/Footer';
+import LoadingScreen from './components/LoadingScreen';
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
+  };
+
   return (
     <Router>
+      {isLoading && <LoadingScreen onLoadingComplete={handleLoadingComplete} />}
       <Navbar />
       <Box sx={{ minHeight: '80vh' }}>
         <Routes>
