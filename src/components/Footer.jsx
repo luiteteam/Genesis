@@ -1,5 +1,6 @@
 import React from 'react';
-import { Box, Typography, Stack, IconButton, Link, useTheme, useMediaQuery } from '@mui/material';
+import { Box, Typography, Stack, IconButton, useTheme, useMediaQuery } from '@mui/material';
+import { Link } from 'react-router-dom';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -37,15 +38,17 @@ export default function Footer() {
         alignItems="center"
         sx={{ mb: 2 }}
       >
-        <Box
-          component="img"
-          src="/logo.png"
-          alt="Genesis Logo"
-          sx={{ height: 48, width: 90, mb: isMobile ? 1 : 0 }}
-        />
-        <Typography variant="h5" fontWeight={700}>
-          Genesis Printers & Publishers Pvt. Ltd.
-        </Typography>
+        <Link to="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'inherit' }}>
+          <Box
+            component="img"
+            src="/logo.png"
+            alt="Genesis Logo"
+            sx={{ height: 48, width: 90, mb: isMobile ? 1 : 0, mr: isMobile ? 0 : 2 }}
+          />
+          <Typography variant="h5" fontWeight={700}>
+            Genesis Printers & Publishers Pvt. Ltd.
+          </Typography>
+        </Link>
       </Stack>
 
       {/* Social Icons */}
@@ -80,14 +83,19 @@ export default function Footer() {
         {navLinks.map((item) => (
           <Link
             key={item.label}
-            href={item.href}
-            underline="none"
-            color="inherit"
-            sx={{
+            to={item.href}
+            style={{
               fontWeight: 600,
               fontSize: 18,
-              '&:hover': { textDecoration: 'underline' },
-              mb: isMobile ? 0.5 : 0,
+              textDecoration: 'none',
+              color: 'inherit',
+              marginBottom: isMobile ? '4px' : '0',
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.textDecoration = 'underline';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.textDecoration = 'none';
             }}
           >
             {item.label}
