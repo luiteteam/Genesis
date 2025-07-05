@@ -11,6 +11,7 @@ import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark';
 import CheckroomIcon from '@mui/icons-material/Checkroom';
 import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
+import { useNavigate } from 'react-router-dom';
 
 const yearsOfService = new Date().getFullYear() - 1998;
 
@@ -89,6 +90,7 @@ const whyChooseUsFeatures = [
 ];
 
 export default function Home() {
+  const navigate = useNavigate();
   return (
     <Box>
       {/* Hero Section */}
@@ -126,40 +128,37 @@ export default function Home() {
           Pioneering Excellence in color Printing Since 1998
           </Typography>
           <Stack direction="row" spacing={2} justifyContent="center" mt={2}>
-          <Button
-  variant="contained"
-  color="primary"
-  size="large"
-  endIcon={<ArrowForwardIcon />}
-  sx={{
-    fontSize: { xs: '0.75rem', sm: '0.875rem', md: '1rem' }, // Responsive font size
-    px: { xs: 2, sm: 3 }, // Adjust horizontal padding for smaller screens
-    py: { xs: 1, sm: 1.5 }, // Optional: adjust vertical padding
-  }}
->
-  View Services
-</Button>
-
-<Button
-  variant="contained"
-  color="secondary"
-  size="large"
-  endIcon={<ArrowForwardIcon />}
-  sx={{
-    fontSize: { xs: '0.75rem', sm: '0.875rem', md: '1rem' },
-    px: { xs: 2, sm: 3 },
-    py: { xs: 1, sm: 1.5 },
-  }}
->
-  Contact Us
-</Button>
-
-  </Stack>
-
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              endIcon={<ArrowForwardIcon />}
+              sx={{
+                fontSize: { xs: '0.75rem', sm: '0.875rem', md: '1rem' },
+                px: { xs: 2, sm: 3 },
+                py: { xs: 1, sm: 1.5 },
+              }}
+              onClick={() => navigate('/services')}
+            >
+              View Services
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              size="large"
+              endIcon={<ArrowForwardIcon />}
+              sx={{
+                fontSize: { xs: '0.75rem', sm: '0.875rem', md: '1rem' },
+                px: { xs: 2, sm: 3 },
+                py: { xs: 1, sm: 1.5 },
+              }}
+              onClick={() => navigate('/contact')}
+            >
+              Contact Us
+            </Button>
+          </Stack>
         </Container>
       </Box>
-
-
 
       {/* Why Choose Us Section */}
       <Box sx={{ bgcolor: 'white', py: { xs: 8, md: 12 } }}>
@@ -271,112 +270,108 @@ export default function Home() {
         </Container>
       </Box>
 
+      {/* Machine Showcase Section */}
+      <Container sx={{ py: 8 }}>
+        <Typography variant="h4" fontWeight={700} align="center" gutterBottom>
+          Our Machines
+        </Typography>
 
-
-{/* Machine Showcase Section */}
-<Container sx={{ py: 8 }}>
-  <Typography variant="h4" fontWeight={700} align="center" gutterBottom>
-    Our Machines
-  </Typography>
-
-  {/* Responsive Wrapper */}
-  <Box
-    sx={{
-      display: { xs: 'flex', md: 'none' }, // Mobile view: flex row
-      overflowX: 'auto',
-      gap: 2,
-      py: 2,
-      px: 1,
-      scrollSnapType: 'x mandatory',
-      '&::-webkit-scrollbar': { display: 'none' }, // Hide scrollbar for better UX
-    }}
-  >
-    {machines.map((machine, idx) => (
-      <Card
-        key={idx}
-        sx={{
-          minWidth: 250,
-          flexShrink: 0,
-          scrollSnapAlign: 'start',
-          p: 2,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          bgcolor: 'background.paper',
-          borderRadius: 2,
-          boxShadow: 3,
-        }}
-      >
+        {/* Responsive Wrapper */}
         <Box
           sx={{
-            width: 250,
-            height: 180,
-            mb: 2,
-            borderRadius: 2,
-            overflow: 'hidden',
+            display: { xs: 'flex', md: 'none' }, // Mobile view: flex row
+            overflowX: 'auto',
+            gap: 2,
+            py: 2,
+            px: 1,
+            scrollSnapType: 'x mandatory',
+            '&::-webkit-scrollbar': { display: 'none' }, // Hide scrollbar for better UX
           }}
         >
-          <Box
-            component="img"
-            src={machine.src}
-            alt={machine.caption}
-            sx={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-            }}
-          />
-        </Box>
-        <Typography variant="subtitle1" fontWeight={600} align="center">
-          {machine.caption}
-        </Typography>
-      </Card>
-    ))}
-  </Box>
-
-  {/* Desktop Grid */}
-  <Grid container spacing={4} justifyContent="center" sx={{ display: { xs: 'none', md: 'flex' } }}>
-    {machines.map((machine, idx) => (
-      <Grid item xs={12} sm={6} md={4} key={idx}>
-        <Card
-          sx={{
-            p: 2,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            minHeight: 320,
-          }}
-        >
-          <Box
-            sx={{
-              width: 250,
-              height: 180,
-              mb: 2,
-              borderRadius: 2,
-              overflow: 'hidden',
-            }}
-          >
-            <Box
-              component="img"
-              src={machine.src}
-              alt={machine.caption}
+          {machines.map((machine, idx) => (
+            <Card
+              key={idx}
               sx={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
+                minWidth: 250,
+                flexShrink: 0,
+                scrollSnapAlign: 'start',
+                p: 2,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                bgcolor: 'background.paper',
+                borderRadius: 2,
+                boxShadow: 3,
               }}
-            />
-          </Box>
-          <Typography variant="subtitle1" fontWeight={600} align="center">
-            {machine.caption}
-          </Typography>
-        </Card>
-      </Grid>
-    ))}
-  </Grid>
-</Container>
+            >
+              <Box
+                sx={{
+                  width: 250,
+                  height: 180,
+                  mb: 2,
+                  borderRadius: 2,
+                  overflow: 'hidden',
+                }}
+              >
+                <Box
+                  component="img"
+                  src={machine.src}
+                  alt={machine.caption}
+                  sx={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                  }}
+                />
+              </Box>
+              <Typography variant="subtitle1" fontWeight={600} align="center">
+                {machine.caption}
+              </Typography>
+            </Card>
+          ))}
+        </Box>
 
-
+        {/* Desktop Grid */}
+        <Grid container spacing={4} justifyContent="center" sx={{ display: { xs: 'none', md: 'flex' } }}>
+          {machines.map((machine, idx) => (
+            <Grid item xs={12} sm={6} md={4} key={idx}>
+              <Card
+                sx={{
+                  p: 2,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  minHeight: 320,
+                }}
+              >
+                <Box
+                  sx={{
+                    width: 250,
+                    height: 180,
+                    mb: 2,
+                    borderRadius: 2,
+                    overflow: 'hidden',
+                  }}
+                >
+                  <Box
+                    component="img"
+                    src={machine.src}
+                    alt={machine.caption}
+                    sx={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                    }}
+                  />
+                </Box>
+                <Typography variant="subtitle1" fontWeight={600} align="center">
+                  {machine.caption}
+                </Typography>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
 
       {/* Years of Happy Customers Section */}
       <Box sx={{ bgcolor: 'grey.100', py: { xs: 6, md: 8 }, textAlign: 'center' }}>
@@ -390,146 +385,141 @@ export default function Home() {
         </Container>
       </Box>
 
-{/* Services */}
-<Container sx={{ py: 8 }}>
-  <Typography variant="h4" fontWeight={700} align="center" gutterBottom>
-    Our Services
-  </Typography>
-  <Typography variant="subtitle1" color="text.secondary" align="center" gutterBottom>
-    Most popular Printing
-  </Typography>
+      {/* Services */}
+      <Container sx={{ py: 8 }}>
+        <Typography variant="h4" fontWeight={700} align="center" gutterBottom>
+          Our Services
+        </Typography>
+        <Typography variant="subtitle1" color="text.secondary" align="center" gutterBottom>
+          Most popular Printing
+        </Typography>
 
-  <Grid container spacing={4} sx={{ mt: 4 }} justifyContent="center">
-    {services.map((service, index) => (
-      <Grid item xs={12} sm={6} md={4} key={index}>
-        <Card
-          sx={{
-            textAlign: 'center',
-            p: 4,
-            bgcolor: 'grey.100',
-            color: 'text.primary',
-            transition: 'all 0.3s ease',
-            '&:hover': {
-              boxShadow: 6,
-              transform: 'translateY(-6px)',
-            },
-          }}
-          elevation={0}
-        >
-          <Box
-            sx={{
-              fontSize: 40,
-              mb: 2,
-              color: index === 1 ? 'white' : 'primary.main',
-              display: 'flex',
-              justifyContent: 'center',
-            }}
-          >
-            {service.icon}
-          </Box>
-          <Typography variant="h6" fontWeight={700} gutterBottom>
-            {service.title}
-          </Typography>
-          <Typography variant="body2" sx={{ mb: 2 }}>
-            {service.desc}
-          </Typography>
-          <Button
-            variant="text"
-            size="small"
-            sx={{
-              textTransform: 'none',
-              fontWeight: 600,
-              color: 'primary.main',
-              '&:hover': {
-                textDecoration: 'underline',
-              },
-            }}
-          >
-            Learn More
-          </Button>
-        </Card>
-      </Grid>
-    ))}
-  </Grid>
-</Container>
-
-
-
-{/* Testimonials */}
-<Box sx={{ bgcolor: 'grey.100', py: 8 }}>
-  <Container>
-    <Typography variant="h4" fontWeight={700} align="center" gutterBottom>
-      Our Esteemed Client Reviews
-    </Typography>
-
-    <Grid container spacing={4} sx={{ mt: 4, overflowX: 'auto', flexWrap: 'nowrap' }}>
-      {[
-        {
-          name: 'Kaushik Kalita',
-          rating: 5,
-          text: `Efficient, reliable, and versatile – Genesis Press delivers outstanding results every time. Their consistent quality and wide range of print solutions make them a top choice for any business.`,
-        },
-        {
-          name: 'Manash Sarma',
-          rating: 5,
-          text: `Printing made easy! From small to bulk orders, Genesis handles everything seamlessly with their modern Komori printers. Highly recommended!`,
-        },
-        {
-          name: 'Yakub Ali',
-          rating: 4.5,
-          text: `Great service and even better print quality. The team is very responsive and ensures every job meets top standards.`,
-        },
-        {
-          name: 'Bhaswati Pathak',
-          rating: 5,
-          text: `Genesis is my go-to for everything printing. Friendly service, premium results, and quick turnaround make them stand out.`,
-        },
-        {
-          name: 'Angel Infosys',
-          rating: 4.5,
-          text: `Affordable pricing and excellent print finish. Our office stationery has never looked better.`,
-        },
-      ].map((review, idx) => (
-        <Grid item xs={12} sm={6} md={4} key={idx} sx={{ minWidth: 300 }}>
-          <Card
-            elevation={3}
-            sx={{
-              p: 3,
-              position: 'relative',
-              borderRadius: 2,
-              height: '100%',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-            }}
-          >
-            <Box sx={{ fontSize: 40, color: 'grey.400', mb: 1 }}>&ldquo;</Box>
-            <Box sx={{ display: 'flex', mb: 1 }}>
-              {Array.from({ length: Math.floor(review.rating) }).map((_, i) => (
-                <Box key={i} sx={{ color: '#FFC107', fontSize: 20 }}>★</Box>
-              ))}
-              {review.rating % 1 !== 0 && (
-                <Box sx={{ color: '#FFC107', fontSize: 20 }}>★½</Box>
-              )}
-            </Box>
-            <Typography variant="body2" color="text.primary" sx={{ mb: 3 }}>
-              {review.text}
-            </Typography>
-            <Box sx={{ fontSize: 40, color: 'grey.400', alignSelf: 'flex-end', mt: 'auto' }}>
-              &rdquo;
-            </Box>
-            <Typography variant="subtitle2" fontWeight={700} color="primary" sx={{ mt: 2 }}>
-              {review.name}
-            </Typography>
-          </Card>
+        <Grid container spacing={4} sx={{ mt: 4 }} justifyContent="center">
+          {services.map((service, index) => (
+            <Grid item xs={12} sm={6} md={4} key={index}>
+              <Card
+                sx={{
+                  textAlign: 'center',
+                  p: 4,
+                  bgcolor: 'grey.100',
+                  color: 'text.primary',
+                  transition: 'all 0.3s ease',
+                  '&:hover': {
+                    boxShadow: 6,
+                    transform: 'translateY(-6px)',
+                  },
+                }}
+                elevation={0}
+              >
+                <Box
+                  sx={{
+                    fontSize: 40,
+                    mb: 2,
+                    color: index === 1 ? 'white' : 'primary.main',
+                    display: 'flex',
+                    justifyContent: 'center',
+                  }}
+                >
+                  {service.icon}
+                </Box>
+                <Typography variant="h6" fontWeight={700} gutterBottom>
+                  {service.title}
+                </Typography>
+                <Typography variant="body2" sx={{ mb: 2 }}>
+                  {service.desc}
+                </Typography>
+                <Button
+                  variant="text"
+                  size="small"
+                  sx={{
+                    textTransform: 'none',
+                    fontWeight: 600,
+                    color: 'primary.main',
+                    '&:hover': {
+                      textDecoration: 'underline',
+                    },
+                  }}
+                >
+                  Learn More
+                </Button>
+              </Card>
+            </Grid>
+          ))}
         </Grid>
-      ))}
-    </Grid>
-  </Container>
-</Box>
+      </Container>
 
+      {/* Testimonials */}
+      <Box sx={{ bgcolor: 'grey.100', py: 8 }}>
+        <Container>
+          <Typography variant="h4" fontWeight={700} align="center" gutterBottom>
+            Our Esteemed Client Reviews
+          </Typography>
 
-
+          <Grid container spacing={4} sx={{ mt: 4, overflowX: 'auto', flexWrap: 'nowrap' }}>
+            {[
+              {
+                name: 'Kaushik Kalita',
+                rating: 5,
+                text: `Efficient, reliable, and versatile – Genesis Press delivers outstanding results every time. Their consistent quality and wide range of print solutions make them a top choice for any business.`,
+              },
+              {
+                name: 'Manash Sarma',
+                rating: 5,
+                text: `Printing made easy! From small to bulk orders, Genesis handles everything seamlessly with their modern Komori printers. Highly recommended!`,
+              },
+              {
+                name: 'Yakub Ali',
+                rating: 4.5,
+                text: `Great service and even better print quality. The team is very responsive and ensures every job meets top standards.`,
+              },
+              {
+                name: 'Bhaswati Pathak',
+                rating: 5,
+                text: `Genesis is my go-to for everything printing. Friendly service, premium results, and quick turnaround make them stand out.`,
+              },
+              {
+                name: 'Angel Infosys',
+                rating: 4.5,
+                text: `Affordable pricing and excellent print finish. Our office stationery has never looked better.`,
+              },
+            ].map((review, idx) => (
+              <Grid item xs={12} sm={6} md={4} key={idx} sx={{ minWidth: 300 }}>
+                <Card
+                  elevation={3}
+                  sx={{
+                    p: 3,
+                    position: 'relative',
+                    borderRadius: 2,
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                  }}
+                >
+                  <Box sx={{ fontSize: 40, color: 'grey.400', mb: 1 }}>&ldquo;</Box>
+                  <Box sx={{ display: 'flex', mb: 1 }}>
+                    {Array.from({ length: Math.floor(review.rating) }).map((_, i) => (
+                      <Box key={i} sx={{ color: '#FFC107', fontSize: 20 }}>★</Box>
+                    ))}
+                    {review.rating % 1 !== 0 && (
+                      <Box sx={{ color: '#FFC107', fontSize: 20 }}>★½</Box>
+                    )}
+                  </Box>
+                  <Typography variant="body2" color="text.primary" sx={{ mb: 3 }}>
+                    {review.text}
+                  </Typography>
+                  <Box sx={{ fontSize: 40, color: 'grey.400', alignSelf: 'flex-end', mt: 'auto' }}>
+                    &rdquo;
+                  </Box>
+                  <Typography variant="subtitle2" fontWeight={700} color="primary" sx={{ mt: 2 }}>
+                    {review.name}
+                  </Typography>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
       </Box>
-    );
-  } 
+    </Box>
+  );
+} 
